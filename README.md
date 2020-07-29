@@ -8,7 +8,7 @@ Crud app
 - username: admin
 - password: admin
 
-App indulás után a főoldalon megjelenik a login form(ha nincs bejelentkezve), valamint egy kisebb statisztika. Itt már lekérdezésre kerülnek a termékek, de jelen állapotban csak bejelentkezett felhasználó látja és tudja szerkeszteni. Ezt a store
+App indulás után a főoldalon megjelenik a login form(ha nincs bejelentkezve), valamint egy kisebb statisztika. Itt már lekérdezésre kerülnek a termékek, de jelen állapotban csak bejelentkezett felhasználó látja és tudja szerkeszteni.
 Belépés után a dashboard-ra irányít a route. Listában vannak termékek, amelyeket lehet megtekinteni, szerkeszteni és törölni. Új terméket is ezen az oldalon lehet létrehozni. 
 
 ##
