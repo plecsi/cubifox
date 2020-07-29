@@ -1,0 +1,23 @@
+header {
+    .nav {
+        margin: 0 -1rem;
+        align-items: center;
+    }
+    .nav-item {
+        margin: 0;
+        padding: .5rem;
+        text-decoration: none;
+    }
+}
+@include media-breakpoint-up(md) {
+    header {
+        .nav {
+            align-items: center;
+        }
+        .nav-item {
+            margin: 0 1rem;
+            padding: 1rem;
+            text-decoration: none;
+        }
+    }
+}

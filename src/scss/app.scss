@@ -1,0 +1,16 @@
+//variables
+@import 'variables';
+
+//bootstarp 5
+@import 'node_modules/bootstrap/scss/bootstrap';
+//own style
+@import 'components/layout';
+@import 'components/header';
+@import 'components/login';
+@import 'components/icon';
+@import 'components/modal';
+@import 'components/product';
+
+
+//helpers
+@import 'components/helpers';

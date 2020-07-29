@@ -1,0 +1,36 @@
+#app {
+    display: flex;
+    flex-flow: row wrap;
+}
+aside {
+    flex: 0 0 100%;
+    padding: 1rem;
+    background: rgba($info, .8);
+    color: $gray;
+}
+.main-container {
+    flex: 0 0 100%;
+    max-width: 100%;
+    padding: 0 12px;
+}
+
+footer {
+    display: flex;
+    flex: 0 0 100%;
+    align-items: center;
+    justify-content: center;
+    font-size: .65rem;
+    background: $dark;
+    color: $white;
+}
+
+@include media-breakpoint-up(md) {
+    aside {
+        flex: 0 0 20%;
+        max-width: 20%;
+    }
+    .main-container {
+        flex: 0 0 80%;
+        max-width: 80%;
+    }
+}

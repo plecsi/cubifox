@@ -1,0 +1,99 @@
+@font-face {
+	font-family: 'custom-fa';
+	src: url('./assets/fonts/customfa.ttf'),
+       url('./assets/fonts/customfa.woff'),
+       url('./assets/fonts/customfa.eot');
+	font-weight: normal;
+	font-style: normal;
+	font-stretch: normal;
+}
+
+@mixin fa($args...) {
+  //@debug keywords($args);
+
+  $fa-size: 1rem;
+
+  @each $name, $icon in keywords($args) {
+    .#{$name} {
+        font-family: 'custom-fa';
+        font-weight: normal;
+        font-style: normal;
+        font-stretch: normal;
+        font-size: $fa-size;
+        display: inline-block;
+        vertical-align: middle;
+        margin: 0 5px;
+        &:before{
+            content: $icon;
+        }
+    }
+  }
+  $sizes: 2,3,4,5;
+	@each $size in $sizes {
+		&.fa-#{$size}x {
+			font-size: $fa-size * $size;
+		}
+	}
+}
+
+
+@mixin fa_bg($args...) {
+  @debug keywords($args);
+  $fa-size: 2rem;
+
+  @each $name, $icon in keywords($args) {
+    font-family: custom-fa;
+    font-family: custom-fa;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    font-size: $fa-size;
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 5px;
+    content: $icon;
+  }
+}
+
+@include fa(
+  $fa-wrench: "\e900",
+  $fa-walking: "\e901",
+  $fa-user-secret: "\e902",
+  $fa-truck: "\e903",
+  $fa-tags: "\e904",
+  $fa-cart: "\e905",
+  $fa-save: "\e906",
+  $fa-phone: "\e907",
+  $fa-percentage: "\e908",
+  $fa-mobile: "\e909",
+  $fa-lock: "\e90a",
+  $fa-lightbulb: "\e90b",
+  $fa-gavel: "\e90c",
+  $fa-eye: "\e90d",
+  $fa-cubes: "\e90e",
+  $fa-creditcard: "\e90f",
+  $fa-coins: "\e910",
+  $fa-check: "\e911",
+  $fa-play-circle: "\e912",
+  $fa-apple: "\e913",
+  $fa-arrow-circle-down: "\e914",
+  $fa-arrow-circle-left: "\e915",
+  $fa-arrow-circle-right: "\e916",
+  $fa-arrow-circle-up: "\e917",
+  $fa-angle-down: "\e918",
+  $fa-angle-left: "\e919",
+  $fa-angle-right: "\e91a",
+  $fa-angle-up: "\e91b",
+  $fa-at: "\e91c",
+  $fa-envelope: "\e91d",
+  $fa-user-check: "\e91e",
+  $fa-user: "\e91f",
+  $fa-tv: "\e920",
+  $fa-times: "\e921",
+  $fa-trash: "\e922",
+  $fa-heart: "\e923",
+  $fa-hourglass: "\e924",
+  $fa-home: "\e925",
+  $fa-hashtag: "\e926",
+  $fa-hammer: "\e927"
+)

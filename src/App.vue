@@ -1,32 +1,51 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view />
+    <header id="nav" class="container-fluid">
+      <div class="nav">
+        <router-link to="/" class="nav-item">Home</router-link>
+        <router-link to="/about" class="nav-item">About</router-link>
+        <router-link to="/dashboard" v-if="isLoggedIn" class="nav-item">Dashboard</router-link>
+        <router-link to="/" v-if="isLoggedIn" class="nav-item"><span @click="logout">Logout</span></router-link>
+        <div v-if="user" class="nav-item"><i class="fa fa-user"></i><span>user: {{user.username}}</span></div>
+      </div>
+    </header>
+    <Stat/>
+    <section class="main-container">
+      <router-view />
+    </section>
+    <footer>
+      made by @plecsi™
+    </footer>
+    <ErrorMsg v-if="error_message" :msg="error_message" />
   </div>
 </template>
-
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
+<script>
+import { mapState } from 'vuex'
+import Stat from '@/components/Statistics.vue'
+import ErrorMsg from '@/components/ErrorMsg.vue'
+export default {
+  computed : {
+        ...mapState(['user']),
+        isLoggedIn : function(){ return this.$store.getters.isLoggedIn},
+        error_message : function(){ return this.$store.state.error_msg}
+    },
+  created() {
+    this.$store.dispatch('getProducts')
+  },
+  components: {
+    Stat, 
+    ErrorMsg
+  },
+  methods: {
+    logout: function () {
+      this.$store.dispatch('logout')
+      .then(() => {
+        this.$router.push('/login')
+      })
     }
   }
 }
+</script>
+<style lang="scss">
+  @import "./scss/app.scss";
 </style>

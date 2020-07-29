@@ -1,0 +1,36 @@
+.btn{
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.msg {
+    position: fixed;
+    top: 5%;
+    left: 50%;
+    animation: box_alert .2s linear forwards;
+
+    &.alert-danger {
+        span::before{
+            @include fa_bg($fa-times: "\e921");
+        }
+    }
+
+    &.alert-success {
+        span::before{
+            @include fa_bg($fa-check: "\e911");
+        }
+    }
+
+    &.alert-info {
+        span::before{
+            @include fa_bg($fa-lightbulb: "\e90b");
+        }
+    }
+}
+
+@keyframes box_alert {
+    0%   {transform: translate3d(-50%, -100%, 0)}
+    50%   {transform: translate3d(-50%, 10%, 0)}
+    100% {transform: translate3d(-50%, 5%, 0)}
+  }

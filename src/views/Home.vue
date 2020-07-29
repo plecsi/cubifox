@@ -1,18 +1,21 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+   <loginForm v-if="!isLoggedIn"/>
+   <h1>Home</h1>
+   <p>ez lesz itt a tartalom...</p>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
+import loginForm from "@/components/loginForm.vue";
 
 export default {
   name: "Home",
   components: {
-    HelloWorld
-  }
+    loginForm
+  },
+  computed : {
+      isLoggedIn : function(){ return this.$store.getters.isLoggedIn}
+    }
 };
 </script>
