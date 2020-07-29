@@ -75,7 +75,6 @@ export default new Vuex.Store({
       }
       catch(err) {
         commit('error_msg', err)
-        console.log('error catch', err)
       }
     },
     logout({commit}){
@@ -102,7 +101,6 @@ export default new Vuex.Store({
       try{
         let resp = await axios({url: process.env.VUE_APP_PRODUCT, headers:{"Authorization": this.state.token}, method:"POST", data: product})
         if(resp.status == 200) {
-          console.log('post', resp.data)
           commit('auth_request')
           commit('error_msg', resp.data.message)
           commit('setProducts', resp.data.product)
@@ -123,9 +121,12 @@ export default new Vuex.Store({
           commit('error_msg', resp.data.message)
           commit('editProducts', resp.data)
         }
+        else {
+          throw resp.data
+        }
       }
       catch(err){
-        console.log('add product error', err)
+        commit('error_msg', err)
       }
     },
     async editInModal({commit}, product) {
@@ -138,9 +139,12 @@ export default new Vuex.Store({
           commit('error_msg', resp.data.message)
           commit('setProducts', resp.data.product)
         }
+        else {
+          throw resp.data
+        }
       }
       catch(err){
-        console.log('add product error', err)
+        commit('error_msg', err)
       }
     }
   },

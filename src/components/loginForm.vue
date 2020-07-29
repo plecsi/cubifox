@@ -26,7 +26,6 @@ export default {
 			return {
 				email : "",
         psw : "",
-        //loading: false
       }
 		},
 		methods: {
@@ -35,7 +34,7 @@ export default {
           let password = this.psw
 		   		this.$store.dispatch('login', { email, password })
            .then(() => this.$router.push('/dashboard'))
-           .catch(err => console.log('van hiba',err))
+           .catch(err => console.log('error: ',err))
 		   	}
 		}
 };
