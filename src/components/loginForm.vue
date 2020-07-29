@@ -3,7 +3,7 @@
     <form  @submit.prevent="login" class="row justify-content-center">
       <div class="col-12 mb-3">
         <label><i class="fa fa-at"></i>E-mail/username</label>
-        <input v-model="email" type="text" placeholder="email" class="form-control" required/>
+        <input v-model="email" type="text" placeholder="email/username" class="form-control" required/>
       </div>
       <div class="col-12 mb-3">
         <label><i class="fa fa-lock"></i>Password</label>

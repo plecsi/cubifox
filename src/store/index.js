@@ -6,7 +6,6 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    status: '',
     token: localStorage.getItem("token") || null,
     user: JSON.parse(localStorage.getItem("user")) || null,
     error_msg: {},
@@ -21,13 +20,9 @@ export default new Vuex.Store({
   getters: {
     isLoggedIn: state => !!state.token,
     user: state => state.user,
-    authStatus: state => state.status,
     e: state => state.e.showModal
   },
   mutations: {
-    auth_request(state){
-      state.status = 'loading'
-    },
     auth_success(state, datas){
       state.status = 'success'
       state.token = datas.token
@@ -54,7 +49,6 @@ export default new Vuex.Store({
   actions: {
     async login({commit}, user){
       try {
-        commit('auth_request')
         let resp = await axios({
                                 url: process.env.VUE_APP_APIURL,
                                 method: 'POST',
@@ -101,7 +95,6 @@ export default new Vuex.Store({
       try{
         let resp = await axios({url: process.env.VUE_APP_PRODUCT, headers:{"Authorization": this.state.token}, method:"POST", data: product})
         if(resp.status == 200) {
-          commit('auth_request')
           commit('error_msg', resp.data.message)
           commit('setProducts', resp.data.product)
         }
@@ -117,7 +110,6 @@ export default new Vuex.Store({
       try{
         let resp = await axios({url: process.env.VUE_APP_PRODUCT, headers:{"Authorization": this.state.token}, method:"PUT", data: product})
         if(resp.status == 200) {
-          commit('auth_request')
           commit('error_msg', resp.data.message)
           commit('editProducts', resp.data)
         }
