@@ -24,7 +24,6 @@ export default new Vuex.Store({
   },
   mutations: {
     auth_success(state, datas){
-      state.status = 'success'
       state.token = datas.token
       state.user = datas.user
     },
@@ -35,8 +34,7 @@ export default new Vuex.Store({
      }.bind(this), 2500);
     },
     logout(state){
-      state.status = ''
-      state.token = ''
+      state.token = null
       state.user = null
     },
     setProducts: (state, products) => state.products = products,
