@@ -8,7 +8,9 @@ header('Content-Type: application/json');
 header('Access-Control-Allow-Headers: *');
 header('Access-Control-Allow-Methods: GET, PUT, POST, DELETE, OPTIONS');
 
-$products = file_get_contents('./product.json');
+
+$product_json = './product.json';
+$products = file_get_contents($product_json);
 $products = json_decode($products);
 
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
@@ -20,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $product = json_decode($product);
     $product->id = uniqid();
     array_push($products, $product);
-    file_put_contents('./product.json', json_encode($products));
+    file_put_contents($product_json, json_encode($products));
     echo json_encode(array(
             "product"=>$products, 
             "message"=> array(
@@ -38,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'DELETE') {
                 unset($products[$key]);
             }
     }
-    file_put_contents('./product.json', json_encode(array_values($products)));
+    file_put_contents($product_json, json_encode(array_values($products)));
     echo json_encode(array(
         "product"=>$products, 
         "message"=> array(
@@ -57,7 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'PUT') {
                 break;
             }
     }
-    file_put_contents('./product.json', json_encode($products));
+    file_put_contents($product_json, json_encode($products));
     echo json_encode(array(
         "product"=>$products, 
         "message"=> array(

@@ -63,7 +63,6 @@ export default new Vuex.Store({
           commit('auth_success', resp.data)
         }
         else {
-          
           throw resp.data
         }
       }
