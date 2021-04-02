@@ -14,11 +14,16 @@ $iss = "http://example.org";
 $aud = "http://example.com";
 $iat = 1356999524;
 $nbf = 1357000000;
-include_once '../libs/php-jwt-master/src/BeforeValidException.php';
-include_once '../libs/php-jwt-master/src/ExpiredException.php';
-include_once '../libs/php-jwt-master/src/SignatureInvalidException.php';
-include_once '../libs/php-jwt-master/src/JWT.php';
-use \Firebase\JWT\JWT;
+// include_once '../libs/php-jwt-master/src/BeforeValidException.php';
+// include_once '../libs/php-jwt-master/src/ExpiredException.php';
+// include_once '../libs/php-jwt-master/src/SignatureInvalidException.php';
+// include_once '../libs/php-jwt-master/src/JWT.php';
+// use \Firebase\JWT\JWT;
+
+error_reporting(-1); // reports all errors
+ini_set("display_errors", "1"); // shows all errors
+ini_set("log_errors", 1);
+ini_set("error_log", "/tmp/php-error.log");
  
 if($email == 'admin' && $psw == 'admin'){
     $token = array(
@@ -27,7 +32,8 @@ if($email == 'admin' && $psw == 'admin'){
        "iat" => $iat,
        "nbf" => $nbf,
        "data" => array(
-           "id" => $user->id,
+           //"id" => $user->id,
+           "id" => 1,
            "user_id" => 1,
            "firstname" => "admin",
            "lastname" => "admin",
@@ -36,7 +42,8 @@ if($email == 'admin' && $psw == 'admin'){
        )
     );
     http_response_code(200);
-    $jwt = JWT::encode($token, $key);
+    //$jwt = JWT::encode($token, $key);
+    $jwt = bin2hex(random_bytes(16));
 	
     echo json_encode(
             array(
